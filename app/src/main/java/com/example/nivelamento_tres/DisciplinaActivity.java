@@ -2,9 +2,14 @@ package com.example.nivelamento_tres;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import com.example.nivelamento_tres.bean.Disciplina;
+import com.example.nivelamento_tres.database.DisciplinaDAO;
 
 public class DisciplinaActivity extends AppCompatActivity {
 
@@ -21,7 +26,7 @@ public class DisciplinaActivity extends AppCompatActivity {
         this.editTextDisciplin	=	(EditText)	findViewById(R.id.disciplina);
         this.editTextDisciplin.setText("teste1");
         Intent intent =	getIntent();
-        disciplinaSelecionada =	(DisciplinaValue)intent.getSerializableExtra("disciplinaSelecionada");
+        disciplinaSelecionada =	(Disciplina) intent.getSerializableExtra("disciplinaSelecionada");
 
         if(disciplinaSelecionada!=null){
             button.setText("Alterar");
@@ -31,7 +36,7 @@ public class DisciplinaActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DisciplinaDAO dao =	new	DisciplinaDAO(DisciplinaActivity.this);
+                DisciplinaDAO dao =	new DisciplinaDAO(DisciplinaActivity.this);
                 if(disciplinaSelecionada==null)	{
                     Disciplina disciplina	= new Disciplina();
                     disciplina.setDisciplina(editTextDisciplin.getText().toString());

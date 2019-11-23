@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         adapter = new ArrayAdapter<Disciplina>(this,android.R.layout.simple_expandable_list_item_1,disciplinaArrayList);
         listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
         listView.setOnCreateContextMenuListener(this);
         registerForContextMenu(listView);
@@ -45,14 +46,14 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainActivity.this,"Clicou: "+i, Toast.LENGTH_LONG).show();
+//                Toast.makeText(MainActivity.this,"Clicou: "+i, Toast.LENGTH_LONG).show();
             }
         });
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(	MainActivity.this, adapter.getItem(i).toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(	MainActivity.this, adapter.getItem(i).toString(), Toast.LENGTH_SHORT).show();
                 return false;
             }
         });
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         ArrayAdapter<Disciplina> adapter = new ArrayAdapter<Disciplina>(this,android.R.layout.simple_expandable_list_item_1,disciplinaArrayList);
         listView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override

@@ -5,12 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DisciplinaActivity"
+    android:padding="15dp"
     android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Disciplina"/>
+        android:text="Disciplina"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"/>
 
     <EditText
         android:id="@+id/disciplina"
@@ -24,5 +27,7 @@
         android:id="@+id/botao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
         android:text="Salvar"/>
 </LinearLayout>
