@@ -2,6 +2,7 @@ package com.example.nivelamento_tres;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -42,17 +43,17 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //ActionBar actionBar	=	this.getActionBar();
-        //actionBar.hide();
+//        ActionBar actionBar	= this.getActionBar();
+//        actionBar.hide();
         textView = (TextView) this.findViewById(R.id.textView);
-        textView.setText("Aguarde	Carregando.......");
+        textView.setText(R.string.aguarde_carregando);
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                new JSONParse().execute();
-            }
-        }, SPLASH_TIME_OUT);
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                new JSONParse().execute();
+//            }
+//        }, SPLASH_TIME_OUT);
     }
 
     public class JSONParse extends AsyncTask<String, String, JSONObject> {
@@ -62,7 +63,7 @@ public class SplashActivity extends Activity {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(SplashActivity.this);
-            pDialog.setMessage("Obtendo	Dados");
+            pDialog.setMessage(getResources().getString(R.string.obtendo_dados));
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(true);
             pDialog.show();

@@ -22,8 +22,7 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String ddl	= "CREATE TABLE	Disciplina (id	INTEGER	PRIMARY	KEY,"
-                +	" disciplina TEXT UNIQUE NOT NULL);";
+        String ddl	= "CREATE TABLE	Disciplina (id	INTEGER	PRIMARY	KEY," +	" disciplina TEXT UNIQUE NOT NULL);";
         sqLiteDatabase.execSQL(ddl);
     }
 

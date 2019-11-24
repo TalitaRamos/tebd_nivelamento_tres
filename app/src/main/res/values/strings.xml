@@ -4,4 +4,6 @@
     <string name="action_new">Nova</string>
     <string name="action_update">Editar</string>
     <string name="action_delete">Apagar</string>
+    <string name="aguarde_carregando">Aguarde Carregando.......</string>
+    <string name="obtendo_dados">Obtendo Dados</string>
 </resources>

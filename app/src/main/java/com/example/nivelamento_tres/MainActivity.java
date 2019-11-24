@@ -58,12 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-//        DisciplinaDAO dao	=	new	DisciplinaDAO(this);
-//        Disciplina disciplinaValue	= new Disciplina();
-//        disciplinaValue.setId((new	Long("1")).longValue());
-//        disciplinaValue.setDisciplina("XXXX");
-//        dao.salvar(disciplinaValue);
-//        dao.close();
     }
 
     @Override
@@ -84,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
         int	id	=	item.getItemId();
         if	(id	==	R.id.action_new)	{
-            Intent intent	=	new	Intent(this,	DisciplinaActivity.class);
+            Intent intent =	new	Intent(this,	DisciplinaActivity.class);
             startActivity(intent);
             return true;
         }
@@ -133,6 +127,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
 
 }
