@@ -43,17 +43,15 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-//        ActionBar actionBar	= this.getActionBar();
-//        actionBar.hide();
         textView = (TextView) this.findViewById(R.id.textView);
         textView.setText(R.string.aguarde_carregando);
 
-//        new Handler().postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                new JSONParse().execute();
-//            }
-//        }, SPLASH_TIME_OUT);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new JSONParse().execute();
+            }
+        }, SPLASH_TIME_OUT);
     }
 
     public class JSONParse extends AsyncTask<String, String, JSONObject> {
@@ -76,7 +74,6 @@ public class SplashActivity extends Activity {
             disciplinaDAO.dropAll();
             JSONArray link = null;
             json = Json();
-            int count = 0;
             try {
                 link = json.getJSONArray("Lista");
                 for (int i = 0; i < link.length(); i++) {

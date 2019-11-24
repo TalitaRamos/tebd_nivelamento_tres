@@ -6,4 +6,6 @@
     <string name="action_delete">Apagar</string>
     <string name="aguarde_carregando">Aguarde Carregando.......</string>
     <string name="obtendo_dados">Obtendo Dados</string>
+    <string name="disciplina">Disciplina</string>
+    <string name="salvar">Salvar</string>
 </resources>
