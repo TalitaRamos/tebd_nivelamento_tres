@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     protected ListView listView;
     protected Disciplina disciplina;
     protected ArrayAdapter<Disciplina> adapter;
+    private  DisciplinaDAO disciplinaDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = (ListView)findViewById(R.id.listView);
 
-        DisciplinaDAO disciplinaDAO = new DisciplinaDAO(this);
+        disciplinaDAO = new DisciplinaDAO(this);
         ArrayList<Disciplina> disciplinaArrayList = (ArrayList<Disciplina>) new ArrayList<>(disciplinaDAO.getLista());
         disciplinaDAO.close();
 
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        DisciplinaDAO disciplinaDAO = new DisciplinaDAO(this);
+        disciplinaDAO = new DisciplinaDAO(this);
         ArrayList<Disciplina> disciplinaArrayList =  new ArrayList(disciplinaDAO.getLista());
         disciplinaDAO.close();
 

@@ -72,4 +72,8 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
         values.put("disciplina",disciplina.getDisciplina());
         getWritableDatabase().update("Disciplina",values, "id=?",	new	String[]{disciplina.getId().toString()});
     }
+
+    public void	dropAll(){
+        getWritableDatabase().delete("Disciplina",null,	null);
+    }
 }

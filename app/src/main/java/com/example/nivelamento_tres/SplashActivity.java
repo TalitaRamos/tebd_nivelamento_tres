@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.nivelamento_tres.bean.Disciplina;
 import com.example.nivelamento_tres.database.DisciplinaDAO;
 
+import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -71,12 +72,11 @@ public class SplashActivity extends Activity {
         protected JSONObject doInBackground(String... args) {
             JSONObject json = null;
             DisciplinaDAO disciplinaDAO = new DisciplinaDAO(SplashActivity.this);
-//            disciplinaDAO.dropAll();
+            disciplinaDAO.dropAll();
             JSONArray link = null;
             json = Json();
             int count = 0;
             try {
-                //	Getting	JSON	Array
                 link = json.getJSONArray("Lista");
                 for (int i = 0; i < link.length(); i++) {
                     JSONObject c = link.getJSONObject(i);
@@ -98,7 +98,6 @@ public class SplashActivity extends Activity {
                 Intent i = new Intent(SplashActivity.this, MainActivity.class);
                 startActivity(i);
                 finish();
-                //	MainActivity.this.onResume();
             } catch (Exception e) {
             }
         }
@@ -108,15 +107,13 @@ public class SplashActivity extends Activity {
         JSONObject json = null;
         String resp = null;
         try {
-            //	Create	connection	to	send	GCM	Message	request.
             URL url1 = new URL("http://www.ictios.com.br/emjorge/appfaculdade/" + "index1.php");
             HttpURLConnection conn = (HttpURLConnection) url1.openConnection();
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestMethod("POST");
             conn.setDoOutput(true);
-            //	Read	GCM	response.
             InputStream inputStream = conn.getInputStream();
-//            resp = IOUtils.toString(inputStream);
+            resp = IOUtils.toString(inputStream);
             json = new JSONObject(resp);
             return json;
         } catch (Exception e) {
