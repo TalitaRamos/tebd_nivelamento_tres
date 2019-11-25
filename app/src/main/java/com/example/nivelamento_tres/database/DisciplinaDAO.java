@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.nivelamento_tres.bean.Disciplina;
 
@@ -22,7 +23,7 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String ddl	= "CREATE TABLE	Disciplina (id	INTEGER	PRIMARY	KEY," +	" disciplina TEXT UNIQUE NOT NULL);";
+        String ddl	= "CREATE TABLE	Disciplina (id	INTEGER	PRIMARY	KEY AUTOINCREMENT," +	" disciplina TEXT UNIQUE NOT NULL);";
         sqLiteDatabase.execSQL(ddl);
     }
 
@@ -36,8 +37,13 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
     public void salvar(Disciplina disciplina){
         ContentValues values = new ContentValues();
         values.put("disciplina",disciplina.getDisciplina());
+        try{
+            getWritableDatabase().insert("Disciplina",null,values);
+            getWritableDatabase().close();
+        }catch (Exception e){
+            Log.i("error",e.getMessage());
+        }
 
-        getWritableDatabase().insert("Disciplina",null,values);
     }
 
     public List getLista(){
@@ -47,7 +53,7 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query,null);
 
-        Disciplina disciplina = null;
+        Disciplina disciplina;
         if(cursor.moveToFirst()){
             do {
                 disciplina = new Disciplina();
@@ -64,15 +70,18 @@ public class DisciplinaDAO extends SQLiteOpenHelper {
     public void	deletar(Disciplina disciplinaValue)	{
         String[] args =	{disciplinaValue.getId().toString()};
         getWritableDatabase().delete("Disciplina","id=?",	args);
+        getWritableDatabase().close();
     }
 
     public void	alterar(Disciplina	disciplina)	{
         ContentValues values = new ContentValues();
         values.put("disciplina",disciplina.getDisciplina());
         getWritableDatabase().update("Disciplina",values, "id=?",	new	String[]{disciplina.getId().toString()});
+        getWritableDatabase().close();
     }
 
     public void	dropAll(){
-        getWritableDatabase().delete("Disciplina",null,	null);
+        getWritableDatabase().delete("Disciplina","id > ?",	new	String[]{"0"});
+        getWritableDatabase().close();
     }
 }

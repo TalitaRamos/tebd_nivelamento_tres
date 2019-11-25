@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     protected Disciplina disciplina;
     protected ArrayAdapter<Disciplina> adapter;
     private  DisciplinaDAO disciplinaDAO;
+    ArrayList<Disciplina> disciplinaArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView)findViewById(R.id.listView);
 
         disciplinaDAO = new DisciplinaDAO(this);
-        ArrayList<Disciplina> disciplinaArrayList = (ArrayList<Disciplina>) new ArrayList<>(disciplinaDAO.getLista());
+        disciplinaArrayList = (ArrayList<Disciplina>) new ArrayList<>(disciplinaDAO.getLista());
         disciplinaDAO.close();
 
         adapter = new ArrayAdapter<Disciplina>(this,android.R.layout.simple_expandable_list_item_1,disciplinaArrayList);
@@ -65,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
 
         disciplinaDAO = new DisciplinaDAO(this);
-        ArrayList<Disciplina> disciplinaArrayList =  new ArrayList(disciplinaDAO.getLista());
+        disciplinaArrayList =  new ArrayList(disciplinaDAO.getLista());
         disciplinaDAO.close();
 
-        ArrayAdapter<Disciplina> adapter = new ArrayAdapter<Disciplina>(this,android.R.layout.simple_expandable_list_item_1,disciplinaArrayList);
+        adapter = new ArrayAdapter<Disciplina>(this,android.R.layout.simple_expandable_list_item_1,disciplinaArrayList);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem	item)	{
 
-        int	id	=	item.getItemId();
+        int	id	= item.getItemId();
         if	(id	==	R.id.action_new)	{
             Intent intent =	new	Intent(this,	DisciplinaActivity.class);
             startActivity(intent);
@@ -104,8 +105,8 @@ public class MainActivity extends AppCompatActivity {
         return	true;
     }
 
-    public boolean onContextItemSelected(final	MenuItem	item)	{
-        disciplina = (Disciplina) this.adapter.getItem(((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position);
+    public boolean onContextItemSelected(final	MenuItem item) {
+        disciplina =  this.adapter.getItem(((AdapterView.AdapterContextMenuInfo) item.getMenuInfo()).position);
         int	id	=	item.getItemId();
         if	(id	==	R.id.action_new)	{
             Intent intent	=	new	Intent(this,	DisciplinaActivity.class);
